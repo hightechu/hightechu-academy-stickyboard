@@ -25,12 +25,15 @@
   </head>
   <!-- BODY -->
   <body>
-    <script src="js/togetherjs.js"></script>
+    <script src=js/togetherjs.js></script>
     <!-- ADD CONTENT HERE -->
-
+ 
     <div id="whiteboardContainer" class="vertical-center">
-      <canvas id="whiteboard"></canvas>
+      <canvas id="whiteboard" onmousedown="mouseDown()" onmouseup="mouseUp()" 
+        onmousemove="draw(event)" width="1000px" height="500px" style="border: 3px; border-style: solid;"></canvas>
     </div>
+
+    <p id="coord">X: || Y:</p>
 
     <!-- JAVASCRIPT SCRIPT -->
     <!-- ADD JS FILES HERE -->
