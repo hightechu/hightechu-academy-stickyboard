@@ -1,23 +1,6 @@
 /* Add Styles Here */
-#whiteboard{
-    padding: auto;
-    margin: auto;
-    display: block;
-    width: 1000px;
-    height: 500px;
-}
 #whiteboardContainer{
-    margin: 0 auto;
-    width: 90%;
-    height: 90%;
     border: 3px;
     border-color: black;
     border-style: solid;
 }
-.vertical-center {
-    margin: 0;
-    position: absolute;
-    top: 50%;
-    -ms-transform: translateY(-50%);
-    transform: translateY(-50%);
-  }

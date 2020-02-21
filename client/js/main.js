@@ -4,34 +4,38 @@ TogetherJS(document.getElementById("whiteboard"));
 
 var canvas = document.getElementById("whiteboard");
 var canvasContext = canvas.getContext("2d");
-
+var canvasContainer = document.getElementById("whiteboardContainer");
 var coord = document.getElementById("coord");
+var mousePressed = false;
 
-var width = canvas.width;
-var height = canvas.height
-canvasContext.fillStyle(0, 0, 0);
+// Change <div> and <canvas> size //
+
+var width = 1000;
+var height = 600;
+
+//                                //
+
+canvasContainer.style.width = String(width) + "px";
+canvasContainer.style.height = String(height) + "px";
+canvas.width = width;
+canvas.height = height;
+
+canvas.addEventListener("mousedown", function(e) { mousePressed = mouseDown(); });
+canvas.addEventListener("mouseup", function(e) { mousePressed = mouseUp(); });
+canvas.addEventListener("mouseleave", function(e) { mousePressed = mouseUp(); })
+canvas.addEventListener("mousemove", function(e) { draw(e, mousePressed); });
 
 function mouseDown(){
-    mousePressed = true; 
+    return true;
 }
 
 function mouseUp(){
-    mousePressed = false;
+    return false;
 }
 
-function draw(e){
-    var x;
-    var y;
-    if (e.pageX || e.pageY) { 
-        x = e.pageX;
-        y = e.pageY;
-    }
-    else { 
-        x = e.clientX + document.body.scrollLeft + document.documentElement.scrollLeft; 
-        y = e.clientY + document.body.scrollTop + document.documentElement.scrollTop; 
-    } 
-    x -= canvas.offsetLeft;
-    y -= canvas.offsetTop;
+function draw(e, mousePressed){
+    var x = e.offsetX;
+    var y = e.offsetY;
 
     coord.innerText = "X: " + x + " || Y: " + y;
     if(!mousePressed)
