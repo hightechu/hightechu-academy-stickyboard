@@ -1,6 +1,6 @@
 // Add JS Here
 
-TogetherJS(document.getElementById("whiteboard"));
+TogetherJS(this);
 
 var canvas = document.getElementById("whiteboard");
 var canvasContext = canvas.getContext("2d");
@@ -22,6 +22,37 @@ canvasContainer.style.height = String(height) + "px";
 canvas.width = width;
 canvas.height = height;
 
+// Receive canvas image on join
+TogetherJS.hub.on("init", function (msg) {
+    if (! msg.sameUrl) {
+        return;
+    }
+    var image = new Image();
+    image.src = msg.image;
+    canvasContext.drawImage(image, 0, 0);
+});
+
+// Send canvas image on client join
+TogetherJS.hub.on("togetherjs.hello", function(msg){
+    if(!msg.sameUrl){
+        return;
+    }
+    
+    var image = canvas.toDataURL("image/png");
+    TogetherJS.send({
+        type: "init",
+        image: image
+    });
+});
+
+// Receive command to draw from other client
+TogetherJS.hub.on("draw", function(msg){
+    if(!msg.sameUrl){
+        return;
+    }
+    draw(msg.e, msg.prevCoord);
+});
+
 canvas.addEventListener("mousedown", 
     function(e) { 
         prevCoord = [e.offsetX, e.offsetY];
@@ -34,7 +65,23 @@ canvas.addEventListener("mouseup",
         mousePressed = mouseUp(); 
     });
 canvas.addEventListener("mouseleave", function(e) { mousePressed = mouseUp(); })
-canvas.addEventListener("mousemove", function(e) { draw(e, mousePressed, prevCoord); });
+canvas.addEventListener("mousemove", 
+    function(e) { 
+        coord.innerText = "X: " + e.offsetX + " || Y: " + e.offsetY;
+        if(mousePressed){
+            draw(e, prevCoord); 
+        }
+        prevCoord = [e.offsetX, e.offsetY];
+
+        // Send draw to other clients
+        if(TogetherJS.running){
+            TogetherJS.send({
+                type : "draw",
+                e : e,
+                prevCoord : prevCoord
+            });
+        }
+    });
 
 function mouseDown(){
     return true;
@@ -51,14 +98,13 @@ function eraser(){
     tool = "eraser";
 }
 
-function draw(e, mousePressed, prevCoord){
+function draw(e, prevCoord){
     var x = e.offsetX;
     var y = e.offsetY;
     canvasContext.lineCap = "round";
 
-    coord.innerText = "X: " + x + " || Y: " + y;
     if(!mousePressed)
-        return prevCoord;
+        return;
 
     if(tool === "eraser"){
         canvasContext.strokeStyle = "#ffffff";
@@ -75,9 +121,4 @@ function draw(e, mousePressed, prevCoord){
     canvasContext.lineTo(x, y);
     canvasContext.fill();
     canvasContext.stroke();
-
-    // Set current coord to old coords
-    prevCoord[0] = x;
-    prevCoord[1] = y;
-    return prevCoord;
 }
