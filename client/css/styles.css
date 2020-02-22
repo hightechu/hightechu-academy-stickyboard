@@ -4,3 +4,6 @@
     border-color: black;
     border-style: solid;
 }
+.togetherjs-cursor{
+    display: none !important;
+}
