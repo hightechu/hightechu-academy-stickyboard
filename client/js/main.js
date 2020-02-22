@@ -7,6 +7,7 @@ var canvasContext = canvas.getContext("2d");
 var canvasContainer = document.getElementById("whiteboardContainer");
 var coord = document.getElementById("coord");
 var mousePressed = false;
+var prevCoord;
 
 // Change <div> and <canvas> size //
 
@@ -20,10 +21,19 @@ canvasContainer.style.height = String(height) + "px";
 canvas.width = width;
 canvas.height = height;
 
-canvas.addEventListener("mousedown", function(e) { mousePressed = mouseDown(); });
-canvas.addEventListener("mouseup", function(e) { mousePressed = mouseUp(); });
+canvas.addEventListener("mousedown", 
+    function(e) { 
+        prevCoord = [e.offsetX, e.offsetY];
+        mousePressed = mouseDown(); 
+    });
+canvas.addEventListener("mouseup", 
+    function(e) {
+        canvasContext.fill();
+        canvasContext.stroke();
+        mousePressed = mouseUp(); 
+    });
 canvas.addEventListener("mouseleave", function(e) { mousePressed = mouseUp(); })
-canvas.addEventListener("mousemove", function(e) { draw(e, mousePressed); });
+canvas.addEventListener("mousemove", function(e) { draw(e, mousePressed, prevCoord); });
 
 function mouseDown(){
     return true;
@@ -33,18 +43,23 @@ function mouseUp(){
     return false;
 }
 
-function draw(e, mousePressed){
+function draw(e, mousePressed, prevCoord){
     var x = e.offsetX;
     var y = e.offsetY;
 
     coord.innerText = "X: " + x + " || Y: " + y;
     if(!mousePressed)
-        return;
+        return prevCoord;
 
+    // Begin path, draw line
     canvasContext.beginPath();
-    // canvasContext.rect(event.clientX - canvas.offsetLeft, event.clientY - canvas.offsetTop, 5, 5);
-    // canvasContext.rect(event.pageX - canvas.offsetLeft, event.pageY - canvas.offsetTop, 5, 5);
-    canvasContext.rect(x, y, 5, 5);
+    canvasContext.moveTo(prevCoord[0], prevCoord[1]);
+    canvasContext.lineTo(x, y);
     canvasContext.fill();
     canvasContext.stroke();
+
+    // Set current coord to old coords
+    prevCoord[0] = x;
+    prevCoord[1] = y;
+    return prevCoord;
 }
