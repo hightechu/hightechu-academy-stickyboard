@@ -1,1 +1,6 @@
 /* Add Styles Here */
+#whiteboardContainer{
+    border: 3px;
+    border-color: black;
+    border-style: solid;
+}
