@@ -8,6 +8,7 @@ var canvasContainer = document.getElementById("whiteboardContainer");
 var coord = document.getElementById("coord");
 var mousePressed = false;
 var prevCoord;
+var tool = "brush";
 
 // Change <div> and <canvas> size //
 
@@ -43,13 +44,30 @@ function mouseUp(){
     return false;
 }
 
+function brush(){
+    tool = "brush";
+}
+function eraser(){
+    tool = "eraser";
+}
+
 function draw(e, mousePressed, prevCoord){
     var x = e.offsetX;
     var y = e.offsetY;
+    canvasContext.lineCap = "round";
 
     coord.innerText = "X: " + x + " || Y: " + y;
     if(!mousePressed)
         return prevCoord;
+
+    if(tool === "eraser"){
+        canvasContext.strokeStyle = "#ffffff";
+        canvasContext.lineWidth = 30;
+    }
+    else if(tool === "brush"){
+        canvasContext.strokeStyle = "#000000";
+        canvasContext.lineWidth = 5;
+    }
 
     // Begin path, draw line
     canvasContext.beginPath();
