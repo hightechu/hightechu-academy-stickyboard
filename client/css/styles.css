@@ -1,1 +1,21 @@
 /* Add Styles Here */
+div.title{text-align: center;
+    margin: auto;
+    width: 50%;
+    font-family: 'Indie Flower', serif;
+font-size: 50px;}
+    div.user{
+        text-align: center;
+        font-family: 'Simonetta',serif;
+        font-size: 25px;
+    }
+    div.code{
+        text-align: center; 
+        font-family: 'Simonetta',serif;
+        font-size: 25px;
+    }
+    div.loginbuttons{
+        text-align: center;
+    }
+    
+    
