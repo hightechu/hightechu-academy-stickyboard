@@ -52,8 +52,7 @@ TogetherJS.hub.on("draw", function(msg){
     if(!msg.sameUrl){
         return;
     }
-    draw(msg.e, msg.prevCoord, true);
-    alert(msg.message);
+    draw(msg.ex, msg.ey, msg.pex, msg.pey, true);
 });
 
 canvas.addEventListener("mousedown", 
@@ -72,15 +71,17 @@ canvas.addEventListener("mousemove",
     function(e) { 
         coord.innerText = "X: " + e.offsetX + " || Y: " + e.offsetY;
         if(mousePressed){
-            draw(e, prevCoord); 
+            draw(e.offsetX, e.offsetY, prevCoord[0], prevCoord[1], false); 
 
+            var heo = "heo";
             // Send draw to other clients
             if(TogetherJS.running){
                 TogetherJS.send({
                     type : "draw",
-                    e : e,
-                    prevCoord : prevCoord,
-                    message : "hello"
+                    ex : e.offsetX,
+                    ey : e.offsetY,
+                    pex : prevCoord[0],
+                    pey : prevCoord[1]
                 });
             }
         }
@@ -102,14 +103,11 @@ function eraser(){
     tool = "eraser";
 }
 
-function draw(e, prevCoord, remote){
-    var x = e.offsetX;
-    var y = e.offsetY;
+function draw(ex, ey, pex, pey, remote){
     canvasContext.lineCap = "round";
 
     if(!mousePressed && !remote)
         return;
-
 
     if(tool === "eraser"){
         canvasContext.strokeStyle = "#ffffff";
@@ -120,12 +118,10 @@ function draw(e, prevCoord, remote){
         canvasContext.lineWidth = 5;
     }
 
-
-
     // Begin path, draw line
     canvasContext.beginPath();
-    canvasContext.moveTo(prevCoord[0], prevCoord[1]);
-    canvasContext.lineTo(x, y);
+    canvasContext.moveTo(pex, pey);
+    canvasContext.lineTo(ex, ey);
     canvasContext.fill();
     canvasContext.stroke();
 }
