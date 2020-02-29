@@ -51,6 +51,13 @@ function eraser(){
     tool = "eraser";
 }
 
+function getcolor(){
+    var getColorPickerByID = document.getElementById("colors").value;
+    canvasContext.strokeStyle = getColorPickerByID;
+}
+
+
+
 function draw(e, mousePressed, prevCoord){
     var x = e.offsetX;
     var y = e.offsetY;
@@ -65,7 +72,7 @@ function draw(e, mousePressed, prevCoord){
         canvasContext.lineWidth = 30;
     }
     else if(tool === "brush"){
-        canvasContext.strokeStyle = "#000000";
+        
         canvasContext.lineWidth = 5;
     }
 
