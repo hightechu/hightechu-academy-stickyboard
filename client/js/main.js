@@ -1,5 +1,3 @@
-TogetherJS(this);
-
 // HTML elements
 var canvas = document.getElementById("whiteboard");
 var canvasContext = canvas.getContext("2d");

@@ -45,7 +45,7 @@
       // Also with findRoom: "roomName" it will connect to the given room name
       findRoom: null,
       // If true, starts TogetherJS automatically (of course!)
-      autoStart: false,
+      autoStart: true,
       // If true, then the "Join TogetherJS Session?" confirmation dialog
       // won't come up
       suppressJoinConfirmation: false,
