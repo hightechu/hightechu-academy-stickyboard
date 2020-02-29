@@ -57,6 +57,14 @@ TogetherJS.hub.on("draw", function(msg){
     draw(msg.ex, msg.ey, msg.pex, msg.pey, true); // Remote draw() call
 });
 
+// Clear board from other clients
+TogetherJS.hub.on("clear", function(msg){
+    if(!msg.sameUrl){
+        return;
+    }
+    canvasContext.clearRect(0, 0, canvas.width, canvas.height)
+});
+
 // Event listeners
 canvas.addEventListener("mousedown", 
     function(e) { 
@@ -105,6 +113,19 @@ function brush(){
 }
 function eraser(){
     tool = "eraser";
+}
+
+// Clear canvas
+function clearBoard(){
+    // Double-check
+    if(confirm("Do you want to clear the whiteboard?")){
+        canvasContext.clearRect(0, 0, canvas.width, canvas.height);
+        if(TogetherJS.running){ // Send to other clients
+            TogetherJS.send({
+                type : "clear"
+            });
+        }
+    }
 }
 
 /* 
