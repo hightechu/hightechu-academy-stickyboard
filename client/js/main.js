@@ -1,5 +1,7 @@
 // Add JS Here
 
+// Current Problem: Draw() coordinates are messed up during TogetherJS.send()
+
 TogetherJS(this);
 
 var canvas = document.getElementById("whiteboard");
@@ -50,7 +52,8 @@ TogetherJS.hub.on("draw", function(msg){
     if(!msg.sameUrl){
         return;
     }
-    draw(msg.e, msg.prevCoord);
+    draw(msg.e, msg.prevCoord, true);
+    alert(msg.message);
 });
 
 canvas.addEventListener("mousedown", 
@@ -70,17 +73,18 @@ canvas.addEventListener("mousemove",
         coord.innerText = "X: " + e.offsetX + " || Y: " + e.offsetY;
         if(mousePressed){
             draw(e, prevCoord); 
+
+            // Send draw to other clients
+            if(TogetherJS.running){
+                TogetherJS.send({
+                    type : "draw",
+                    e : e,
+                    prevCoord : prevCoord,
+                    message : "hello"
+                });
+            }
         }
         prevCoord = [e.offsetX, e.offsetY];
-
-        // Send draw to other clients
-        if(TogetherJS.running){
-            TogetherJS.send({
-                type : "draw",
-                e : e,
-                prevCoord : prevCoord
-            });
-        }
     });
 
 function mouseDown(){
@@ -98,13 +102,14 @@ function eraser(){
     tool = "eraser";
 }
 
-function draw(e, prevCoord){
+function draw(e, prevCoord, remote){
     var x = e.offsetX;
     var y = e.offsetY;
     canvasContext.lineCap = "round";
 
-    if(!mousePressed)
+    if(!mousePressed && !remote)
         return;
+
 
     if(tool === "eraser"){
         canvasContext.strokeStyle = "#ffffff";
@@ -114,6 +119,8 @@ function draw(e, prevCoord){
         canvasContext.strokeStyle = "#000000";
         canvasContext.lineWidth = 5;
     }
+
+
 
     // Begin path, draw line
     canvasContext.beginPath();

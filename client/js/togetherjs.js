@@ -487,7 +487,7 @@
       return "TogetherJS";
     };
   
-    var defaultHubBase = "https://hub.togetherjs.com";
+    var defaultHubBase = "http://localhost:8080/";
     if (defaultHubBase == "__" + "hubUrl"+ "__") {
       // Substitution wasn't made
       defaultHubBase = "https://hub.togetherjs.mozillalabs.com";
