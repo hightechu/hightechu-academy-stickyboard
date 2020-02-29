@@ -25,48 +25,37 @@
     </div>
 </form>
 <div class="loginbuttons">
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createroom" onclick="ifRoomCodeTaken()">Create Room</button>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createroom">Create Room</button>
 <button type="button" class="btn btn-primary">Join Room</button>
-<div class="modal" id="createroom" onclick="ifRoomCodeTaken()">
+<div class="modal" id="createroom">
         <div class="modal-dialog">
           <div class="modal-content">
-         <script> 
-            function ifRoomCodeTaken() { 
-                var roomcode= document.getElementById("code").value;
-                if(roomcode=="") {
-                $("#room").html("Invalid Room Code");
-    $("#coderoom").html("Room Code Invalid");
-} 
-            else {
-                console.log("Code Available");
-                
-            } 
-            var user= document.getElementById("username");
-            if (user=="") {
-                alert
-            }
-            else{
-
-            }
-            }
-           
-            </script>
-
+          
+            <!-- Modal Header -->
             <div class="modal-header">
-        <h4 class="modal-title" id="room">Invalid room code</h4>
+        <h4 class="modal-title">Invalid room code</h4>
               <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
             
-            <div class="modal-body" id="coderoom">        
+            <!-- Modal body -->
+            <div class="modal-body">
+              Room code invalid
             </div>
             
+            <!-- Modal footer -->
             <div class="modal-footer">
               <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
             </div>
+            
           </div>
         </div>
-      </div>   
+      </div>
+      
     </div>
+    
+
 </div>
+
+
  </body>  
 </html>
