@@ -106,6 +106,16 @@ function mouseDown(){
 }
 
 // Change tool button event handlers
+canvas.addEventListener("mousemove", function(e) { draw(e, mousePressed, prevCoord); });
+
+function mouseDown(){
+    return true;
+}
+
+function mouseUp(){
+    return false;
+}
+
 function brush(){
     tool = "brush";
 }
@@ -159,4 +169,13 @@ function draw(ex, ey, pex, pey, remote){
     canvasContext.lineTo(ex, ey); // Move to current mouse position
     canvasContext.fill();
     canvasContext.stroke();
+    canvasContext.moveTo(prevCoord[0], prevCoord[1]);
+    canvasContext.lineTo(x, y);
+    canvasContext.fill();
+    canvasContext.stroke();
+
+    // Set current coord to old coords
+    prevCoord[0] = x;
+    prevCoord[1] = y;
+    return prevCoord;
 }
