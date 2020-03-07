@@ -128,6 +128,12 @@ canvas.addEventListener("mousemove",
         prevCoord = [mx, my]; // Sets new anchor
     });
 
+document.getElementById("colors").addEventListener("change", 
+    function(e) {
+        brush();
+    }
+);
+
 // In case the functions need to be expanded
 function mouseUp(){
     return false;
@@ -165,7 +171,6 @@ function clearBoard(){
 
 /* 
 Parameters:
-
 ex : event x (number)
 ey : event y (number)
 pex : previous event x (number)
@@ -175,6 +180,10 @@ remote : if the call is local or from another client (boolean)
 function draw(ex, ey, pex, pey, remote){
     canvasContext.lineCap = "round";
 
+    var getColorPickerByID = document.getElementById("colors").value;
+    
+    var Width = document.getElementById("width").value;
+
     // If mouse is up and the call is local, return
     if(!mousePressed && !remote)
         return;
@@ -182,12 +191,12 @@ function draw(ex, ey, pex, pey, remote){
     // Draws a white line, erasing the stroke
     if(tool === "eraser"){
         canvasContext.strokeStyle = "#ffffff";
-        canvasContext.lineWidth = 30;
+        canvasContext.lineWidth = Width;
     }
     // Draws a black line
     else if(tool === "brush"){
-        canvasContext.strokeStyle = "#000000";
-        canvasContext.lineWidth = 5;
+        canvasContext.strokeStyle = getColorPickerByID;
+        canvasContext.lineWidth = Width;
     }
 
     // Begin path, draw line
