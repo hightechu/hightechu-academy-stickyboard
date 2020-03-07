@@ -128,6 +128,7 @@ canvas.addEventListener("mousemove",
         prevCoord = [mx, my]; // Sets new anchor
     });
 
+// listens for an event and makes sure that when the users changes color it switches to the brush function
 document.getElementById("colors").addEventListener("change", 
     function(e) {
         brush();
@@ -180,20 +181,22 @@ remote : if the call is local or from another client (boolean)
 function draw(ex, ey, pex, pey, remote){
     canvasContext.lineCap = "round";
 
+    // gets the value of the color that is picked
     var getColorPickerByID = document.getElementById("colors").value;
     
+    //gets the value of the width that is selected
     var Width = document.getElementById("width").value;
 
     // If mouse is up and the call is local, return
     if(!mousePressed && !remote)
         return;
 
-    // Draws a white line, erasing the stroke
+    // Draws a white line, erasing the stroke, and the width is dependant on what is picked
     if(tool === "eraser"){
         canvasContext.strokeStyle = "#ffffff";
         canvasContext.lineWidth = Width;
     }
-    // Draws a black line
+    // Draws a line, and the color and width values are dependant on what is picked
     else if(tool === "brush"){
         canvasContext.strokeStyle = getColorPickerByID;
         canvasContext.lineWidth = Width;
