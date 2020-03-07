@@ -34,12 +34,16 @@
 
     <button id="brush" onclick="brush()">Brush</button>
     <button id="eraser" onclick="eraser()">Eraser</button>
+
+    <!-- drop down window that allos user to pick a color -->
     <select id="colors" onchange="getcolor()">
       <option value="black">Black</option>
       <option value="red">Red</option>
       <option value="blue">Blue</option>
       <option value="green">Green</option>
     </select>
+
+    <!-- box with arrows where the user can pick the desired width for the stroke on the whiteboard -->
     <input id = "width" type="number" min="4" max="80" step="4" value="4"></input>
     <button id="clear" onclick="clearBoard()">Clear Board</button>
     
