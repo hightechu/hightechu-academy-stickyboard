@@ -35,6 +35,11 @@ canvas.addEventListener("mouseup",
     });
 canvas.addEventListener("mouseleave", function(e) { mousePressed = mouseUp(); })
 canvas.addEventListener("mousemove", function(e) { draw(e, mousePressed, prevCoord); });
+document.getElementById("colors").addEventListener("change", 
+    function(e) {
+        brush();
+    }
+);
 
 function mouseDown(){
     return true;
@@ -52,10 +57,8 @@ function eraser(){
 }
 
 function getcolor(){
-    var getColorPickerByID = document.getElementById("colors").value;
-    canvasContext.strokeStyle = getColorPickerByID;
+    
 }
-
 
 
 function draw(e, mousePressed, prevCoord){
@@ -63,18 +66,25 @@ function draw(e, mousePressed, prevCoord){
     var y = e.offsetY;
     canvasContext.lineCap = "round";
 
+    var getColorPickerByID = document.getElementById("colors").value;
+    
+    var Width = document.getElementById("width").value;
+
     coord.innerText = "X: " + x + " || Y: " + y;
     if(!mousePressed)
         return prevCoord;
 
     if(tool === "eraser"){
         canvasContext.strokeStyle = "#ffffff";
-        canvasContext.lineWidth = 30;
+        canvasContext.lineWidth = Width;
     }
+
     else if(tool === "brush"){
-        
-        canvasContext.lineWidth = 5;
+        canvasContext.strokeStyle = getColorPickerByID;
+        canvasContext.lineWidth = Width;
     }
+    
+
 
     // Begin path, draw line
     canvasContext.beginPath();
