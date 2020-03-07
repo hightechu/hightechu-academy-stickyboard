@@ -487,7 +487,7 @@
       return "TogetherJS";
     };
   
-    var defaultHubBase = "http://localhost:8080/";
+    var defaultHubBase = "https://stickyboardhub.herokuapp.com/";
     if (defaultHubBase == "__" + "hubUrl"+ "__") {
       // Substitution wasn't made
       defaultHubBase = "https://hub.togetherjs.mozillalabs.com";
