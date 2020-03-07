@@ -13,6 +13,7 @@ font-size: 200px;}
         text-align: center; 
         font-family: 'Simonetta',serif;
         font-size: 25px;
+        margin: 0 auto;
     }
     div.loginbuttons{
         text-align: center;

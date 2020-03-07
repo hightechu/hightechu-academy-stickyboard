@@ -1,5 +1,4 @@
 // Add JS Here
-
 TogetherJS(document.getElementById("whiteboard"));
 
 var canvas = document.getElementById("whiteboard");
