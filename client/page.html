@@ -19,14 +19,12 @@
     <meta name="author" content="">
     <!-- ADD CSS FILES HERE -->
     <link rel="stylesheet" href="css/styles.css">
-    <script src="js/jquery-3.4.1.min.js"></script>
 
     <!-- ADD FAVICON -->
     <!-- Learn more about favicons here: https://en.wikipedia.org/wiki/Favicon -->
   </head>
   <!-- BODY -->
   <body>
-    <!--  -->
     <script src=js/togetherjs.js></script>
     <!-- ADD CONTENT HERE -->
  
@@ -34,10 +32,8 @@
       <canvas id="whiteboard"></canvas>
     </div>
 
-    <p id="coord">X: || Y:</p>
-
-    <button id="eraser" onclick="eraser()">Eraser</button>
     <button id="brush" onclick="brush()">Brush</button>
+    <button id="eraser" onclick="eraser()">Eraser</button>
     <select id="colors" onchange="getcolor()">
       <option value="black">Black</option>
       <option value="red">Red</option>
@@ -45,7 +41,8 @@
       <option value="green">Green</option>
     </select>
     <input id = "width" type="number" min="4" max="80" step="4" value="4"></input>
-
+    <button id="clear" onclick="clearBoard()">Clear Board</button>
+    
     <!-- JAVASCRIPT SCRIPT -->
     <!-- ADD JS FILES HERE -->
     <script src="js/helper.js"></script> <!-- Loopback JavaScript Helper-->
