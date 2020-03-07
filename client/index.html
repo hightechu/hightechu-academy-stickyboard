@@ -41,8 +41,9 @@
               Code:    
               <input type="text" id="code" name="code">
               <button onclick="joinRoom()">Go!</button>
-
-              <script>
+<!-- creates pop up modal asking for code-->
+              
+  <script>
                 function joinRoom(){
                   window.location.href = "page.html#&togetherjs=" + document.getElementById("code").value;
                 }
