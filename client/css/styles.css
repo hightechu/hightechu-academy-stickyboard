@@ -3,7 +3,9 @@ div.title{text-align: center;
     margin: auto;
     width: 50%;
     font-family: 'Indie Flower', serif;
-font-size: 200px;}
+    font-size: 200px;
+    padding: 10px;
+}
     div.user{
         text-align: center;
         font-family: 'Simonetta',serif;
