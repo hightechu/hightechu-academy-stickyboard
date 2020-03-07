@@ -8,19 +8,20 @@ var mousePressed = false;
 var prevCoord;
 var tool = "brush";
 
-////////////////////////////////////
-// Change <div> and <canvas> size //
+var mx;
+var my;
 
-var width = 1000;
-var height = 600;
+// Vars for resizing adjustment
+var startingWidth = window.innerWidth;
+var startingHeight = window.innerHeight;
+var currentWidth = startingWidth;
+var currentHeight = startingHeight;
+var startingOffLeft = canvas.offsetLeft;
+var startingOffTop = canvas.offsetTop;
 
-//                                //
-////////////////////////////////////
-
-canvasContainer.style.width = String(width) + "px";
-canvasContainer.style.height = String(height) + "px";
-canvas.width = width;
-canvas.height = height;
+// Set canvas width
+canvas.width  = canvas.offsetWidth;
+canvas.height = canvas.offsetHeight;
 
 // Receive canvas image on join
 TogetherJS.hub.on("init", function (msg) {
@@ -29,7 +30,7 @@ TogetherJS.hub.on("init", function (msg) {
     }
 
     // Draws the existing whiteboard onto new client canvas
-    var image = new Image();
+    var image = new Image();   
     image.src = msg.image;
     canvasContext.drawImage(image, 0, 0);
 });
@@ -63,10 +64,18 @@ TogetherJS.hub.on("clear", function(msg){
     canvasContext.clearRect(0, 0, canvas.width, canvas.height)
 });
 
+// Change Canvas on screen size change
+window.addEventListener("resize", 
+    function(e){ 
+        currentWidth = window.innerWidth; 
+        currentHeight = window.innerHeight; 
+    });
+
 // Event listeners
 canvas.addEventListener("mousedown", 
     function(e) { 
-        prevCoord = [e.offsetX, e.offsetY]; // Sets "anchor" for drawing
+        mousePos(e);
+        prevCoord = [mx, my]; // Sets "anchor" for drawing
         mousePressed = mouseDown(); 
     });
 canvas.addEventListener("mouseup", 
@@ -76,25 +85,47 @@ canvas.addEventListener("mouseup",
         canvasContext.stroke();
         mousePressed = mouseUp(); 
     });
-canvas.addEventListener("mouseleave", function(e) { mousePressed = mouseUp(); })
-canvas.addEventListener("mousemove", 
+
+canvas.addEventListener("mouseleave", 
     function(e) {
+        mousePos(e);
         if(mousePressed){
             // Call draw() locally
-            draw(e.offsetX, e.offsetY, prevCoord[0], prevCoord[1], false); 
+            draw(mx, my, prevCoord[0], prevCoord[1], false); 
 
             // Send draw to other clients
             if(TogetherJS.running){
                 TogetherJS.send({
                     type : "draw",
-                    ex : e.offsetX, // Current X
-                    ey : e.offsetY, // Current Y
+                    ex : mx, // Current X
+                    ey : my, // Current Y
                     pex : prevCoord[0], // Previous X
                     pey : prevCoord[1] // Previous Y
                 });
             }
         }
-        prevCoord = [e.offsetX, e.offsetY]; // Sets new anchor
+        prevCoord = [mx, my]; // Sets new anchor
+        mousePressed = false;
+    })
+canvas.addEventListener("mousemove", 
+    function(e) {
+        mousePos(e);
+        if(mousePressed){
+            // Call draw() locally
+            draw(mx, my, prevCoord[0], prevCoord[1], false); 
+
+            // Send draw to other clients
+            if(TogetherJS.running){
+                TogetherJS.send({
+                    type : "draw",
+                    ex : mx, // Current X
+                    ey : my, // Current Y
+                    pex : prevCoord[0], // Previous X
+                    pey : prevCoord[1] // Previous Y
+                });
+            }
+        }
+        prevCoord = [mx, my]; // Sets new anchor
     });
 
 // In case the functions need to be expanded
@@ -106,21 +137,17 @@ function mouseDown(){
 }
 
 // Change tool button event handlers
-canvas.addEventListener("mousemove", function(e) { draw(e, mousePressed, prevCoord); });
-
-function mouseDown(){
-    return true;
-}
-
-function mouseUp(){
-    return false;
-}
-
 function brush(){
     tool = "brush";
 }
 function eraser(){
     tool = "eraser";
+}
+
+// Change coords of mouse
+function mousePos(e){
+    mx = (e.pageX * (startingWidth / currentWidth)) - startingOffLeft;
+    my = (e.pageY * (startingHeight / currentHeight)) - startingOffTop;
 }
 
 // Clear canvas
@@ -169,13 +196,4 @@ function draw(ex, ey, pex, pey, remote){
     canvasContext.lineTo(ex, ey); // Move to current mouse position
     canvasContext.fill();
     canvasContext.stroke();
-    canvasContext.moveTo(prevCoord[0], prevCoord[1]);
-    canvasContext.lineTo(x, y);
-    canvasContext.fill();
-    canvasContext.stroke();
-
-    // Set current coord to old coords
-    prevCoord[0] = x;
-    prevCoord[1] = y;
-    return prevCoord;
 }

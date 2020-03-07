@@ -3,6 +3,14 @@
     border: 3px;
     border-color: black;
     border-style: solid;
+    margin: 0 auto;
+    width: 90vw;
+    height: 90vh;
+}
+
+#whiteboard{
+    width: 100%;
+    height: 100%;
 }
 
 .togetherjs-cursor{
