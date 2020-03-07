@@ -10,7 +10,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+    <script src="js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
     <!-- ADD TITLE -->
     <title></title>
     <!-- ADD DESCRIPTION -->
@@ -31,22 +32,21 @@
     <div id="whiteboardContainer">
       <canvas id="whiteboard"></canvas>
     </div>
-
-    <button id="brush" onclick="brush()">Brush</button>
-    <button id="eraser" onclick="eraser()">Eraser</button>
-
-    <!-- drop down window that allos user to pick a color -->
-    <select id="colors" onchange="getcolor()">
-      <option value="black">Black</option>
-      <option value="red">Red</option>
-      <option value="blue">Blue</option>
-      <option value="green">Green</option>
+    <br><br>
+   
+   <div class="text-center">
+    <button id="brush"  onclick="brush()" class="btn btn-outline-primary btn-sm">Brush</button>
+    <button id="eraser" class="btn btn-outline-primary btn-sm" onclick="eraser()">Eraser</button>
+    <select id="colors" class="btn btn-outline-primary btn-sm" onchange="getcolor()">
+      <option value="black" class="btn btn-dark">Black</option>
+      <option value="red" class="btn btn-danger">Red</option>
+      <option value="blue" class="btn btn-info">Blue</option>
+      <option value="green" class="btn btn-success">Green</option>
     </select>
+    <input id = "width" class="btn-outline-primary btn-sm" type="number" min="4" max="80" step="4" value="4"></input>
+    <button id="clear" class="btn btn-outline-primary btn-sm" onclick="clearBoard()">Clear Board</button>
+    </div>
 
-    <!-- box with arrows where the user can pick the desired width for the stroke on the whiteboard -->
-    <input id = "width" type="number" min="4" max="80" step="4" value="4"></input>
-    <button id="clear" onclick="clearBoard()">Clear Board</button>
-    
     <!-- JAVASCRIPT SCRIPT -->
     <!-- ADD JS FILES HERE -->
     <script src="js/helper.js"></script> <!-- Loopback JavaScript Helper-->
