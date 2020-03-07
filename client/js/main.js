@@ -30,7 +30,7 @@ TogetherJS.hub.on("init", function (msg) {
     }
 
     // Draws the existing whiteboard onto new client canvas
-    var image = new Image();
+    var image = new Image();   
     image.src = msg.image;
     canvasContext.drawImage(image, 0, 0);
 });
@@ -85,6 +85,7 @@ canvas.addEventListener("mouseup",
         canvasContext.stroke();
         mousePressed = mouseUp(); 
     });
+
 canvas.addEventListener("mouseleave", 
     function(e) {
         mousePos(e);
@@ -125,9 +126,6 @@ canvas.addEventListener("mousemove",
             }
         }
         prevCoord = [mx, my]; // Sets new anchor
-
-        document.getElementById("coord").innerHTML = "X: " + mx + " || Y: " + my;
-        // document.getElementById("coord").innerHTML = "X: " + window.innerWidth + " || Y: " + window.innerHeight;
     });
 
 // In case the functions need to be expanded
