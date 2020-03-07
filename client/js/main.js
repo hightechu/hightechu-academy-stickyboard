@@ -146,9 +146,13 @@ function mouseDown(){
 // Change tool button event handlers
 function brush(){
     tool = "brush";
+    document.getElementById("brush").style.textDecoration = "underline";
+    document.getElementById("eraser").style.backgroundColor = "none";
 }
 function eraser(){
     tool = "eraser";
+    document.getElementById("eraser").style.textDecoration = "underline";
+    document.getElementById("brush").style.textDecoration = "none";
 }
 
 // Change coords of mouse
