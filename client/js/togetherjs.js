@@ -45,7 +45,7 @@
       // Also with findRoom: "roomName" it will connect to the given room name
       findRoom: null,
       // If true, starts TogetherJS automatically (of course!)
-      autoStart: false,
+      autoStart: true,
       // If true, then the "Join TogetherJS Session?" confirmation dialog
       // won't come up
       suppressJoinConfirmation: false,
@@ -487,7 +487,7 @@
       return "TogetherJS";
     };
   
-    var defaultHubBase = "https://hub.togetherjs.com";
+    var defaultHubBase = "http://localhost:8080/";
     if (defaultHubBase == "__" + "hubUrl"+ "__") {
       // Substitution wasn't made
       defaultHubBase = "https://hub.togetherjs.mozillalabs.com";
