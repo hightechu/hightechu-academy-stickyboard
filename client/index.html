@@ -3,8 +3,8 @@
   <head>
     <link rel="stylesheet" 
     href="https://fonts.googleapis.com/css?family=Indie+Flower&display=swap">
-    <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/styles.css">
     <script src="js/jquery.js"></script>
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
@@ -15,45 +15,20 @@
 
     <link href="https://fonts.googleapis.com/css?family=Simonetta&display=swap" rel="stylesheet">
     <div class="title">
-      <h1> Stickyboard</h1>
+      <h1 style="font-size: 100px;"> Stickyboard</h1>
     </div> 
 
+    <div class="code">
+      Code:    
+      <input type="text" id="code" name="code">
+      <button onclick="joinRoom()">Create/Join Room</button>
 
-    <div class="loginbuttons">
-      <button type="button" class="btn btn-primary" onclick="window.location.href = 'page.html'">Create Room</button>
-      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#joinCodeModal">Join Room</button>
-    </div>
+      <script>
+        function joinRoom(){
+          window.location.href = "page.html#&togetherjs=" + document.getElementById("code").value;
+        }
+      </script>
 
-    <!-- Join code entry modal -->
-    <div id="joinCodeModal" class="modal" role="dialog">
-      <div class="modal-dialog">
-
-        <div class="modal-content">
-          <div class="modal-header">
-
-            <h4 class="modal-title">Enter Room Link</h4>
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-
-          </div>
-          <div class="modal-body">
-
-            <div class="code">
-              Code:    
-              <input type="text" id="code" name="code">
-              <button onclick="joinRoom()">Go!</button>
-
-              <script>
-                function joinRoom(){
-                  window.location.href = "page.html#&togetherjs=" + document.getElementById("code").value;
-                }
-              </script>
-
-            </div>
-
-          </div>
-        </div>
-
-      </div>
     </div>
 
   </body>  
