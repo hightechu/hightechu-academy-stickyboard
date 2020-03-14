@@ -18,23 +18,23 @@ What if you needed a way to visually communicate ideas, but without the hassle o
 
 ### User Stories :snowboarder:
 
-[DELETE ME - ADD YOUR USER STORIES HERE]
+As a host, I want:
+1. To be able to draw something that my students/attendees can see
+2. A strong server so that I can keep sharing ideas without interruptions
+3. To choose my own room code, and choose who joins
 
-* EXAMPLE - I want my users to be able to see a default page on my website.
-* EXAMPLE - I want my users to be able to login to my website.
+As an attendee, I want:
+1. To be able to communicate ideas with others both visually and textually
 
 ### Website Pages :speedboat:
 
-[DELETE ME - ADD YOUR WEBSITE PAGES HERE]
+Landing and Login: index.html
 
-* EXAMPLE - Landing Page -> `index.html`
-* EXAMPLE - Login / Register Page -> `login-register.html`
+Chat room with whiteboard: page.html#&togetherjs=[room code]
 
 ### Promo :grinning:
 
-[DELETE ME - ADD YOUR WEBSITE PROMO IMAGES HERE]
 
-![Example: Promo 1]()
 
 ## Getting Started :thinking:
 
