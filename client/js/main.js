@@ -183,16 +183,18 @@ function draw(ex, ey, pex, pey, remote, colour, size){
     canvasContext.stroke();
 
     // Send draw to other clients
-    if(TogetherJS.running){
-        TogetherJS.send({
-            type : "draw",
-            ex : ex, // Current X
-            ey : ey, // Current Y
-            pex : pex, // Previous X
-            pey : pey, // Previous Y
-            remote : true, // Remote draw call
-            colour : colour, // Draw colour
-            size : size // Stroke size
-        });
+    if(!remote){
+        if(TogetherJS.running){
+            TogetherJS.send({
+                type : "draw",
+                ex : ex, // Current X
+                ey : ey, // Current Y
+                pex : pex, // Previous X
+                pey : pey, // Previous Y
+                remote : true, // Remote draw call
+                colour : colour, // Draw colour
+                size : size // Stroke size
+            });
+        }
     }
 }
