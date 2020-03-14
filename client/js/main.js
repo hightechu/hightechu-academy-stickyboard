@@ -194,7 +194,7 @@ function draw(ex, ey, pex, pey, remote, colour, size, tool){
                 pey : pey, // Previous Y
                 remote : true, // Remote draw call
                 colour : colour, // Draw colour
-                size : size // Stroke size
+                size : size, // Stroke size
                 tool : tool // Tool
             });
         }
