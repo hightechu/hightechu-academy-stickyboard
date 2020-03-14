@@ -23,6 +23,7 @@
       <button onclick="joinRoom()">Create/Join Room</button>
 
       <script>
+        TogetherJSConfig_hubBase = "https://togetherjs-hub.glitch.me/";
         function joinRoom(){
           window.location.href = "page.html#&togetherjs=" + document.getElementById("code").value;
         }
