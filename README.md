@@ -2,21 +2,19 @@
 
 HighTechU Group Project
 
-## [REPLACE ME WITH YOUR GROUP PROJECT NAME]
+## Stickyboard
 
 ### Website :star:
 
-[DELETE ME - ADD YOUR LIVE DEMO URL HERE]
-
-[Live Demo]()
+https://stickyboard-hightechu.herokuapp.com/
 
 ### Mini Pitch :ghost:
 
-[DELETE ME - ADD YOUR PITCH HERE]
+Stickyboard is an easy to use collaboration and teaching software. Powered off of TogetherJS by Mozilla, it includes a chat room, VC (beta), and custom usernames for each user. It centers around the whiteboard, where ideas can easily be shared by any participants. It only takes 10 seconds to set up a room, where you can even choose your own special code. Especially during this time of pandemic, what better way to teach remotely than with Stickyboard?
 
 ### Problem Statment :mega:
 
-[DELETE ME - ADD YOUR PROBLEM STATMEMENT HERE]
+What if you needed a way to visually communicate ideas, but without the hassle of travel?
 
 ### User Stories :snowboarder:
 
