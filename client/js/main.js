@@ -53,7 +53,7 @@ TogetherJS.hub.on("draw", function(msg){
     if(!msg.sameUrl){
         return;
     }
-    draw(msg.ex, msg.ey, msg.pex, msg.pey, msg.remote, msg.colour, msg.size); // Remote draw() call
+    draw(msg.ex, msg.ey, msg.pex, msg.pey, msg.remote, msg.colour, msg.size, msg.tool); // Remote draw() call
 });
 
 // Clear board from other clients
@@ -92,7 +92,7 @@ canvas.addEventListener("mouseleave",
         if(mousePressed){
             // Call draw() locally
             draw(mx, my, prevCoord[0], prevCoord[1], false, 
-                document.getElementById("colors").value, document.getElementById("width").value); 
+                document.getElementById("colors").value, document.getElementById("width").value, tool); 
         }
         prevCoord = [mx, my]; // Sets new anchor
         mousePressed = false;
@@ -103,7 +103,7 @@ canvas.addEventListener("mousemove",
         if(mousePressed){
             // Call draw() locally
             draw(mx, my, prevCoord[0], prevCoord[1], false, 
-                document.getElementById("colors").value, document.getElementById("width").value); 
+                document.getElementById("colors").value, document.getElementById("width").value, tool); 
         }
         prevCoord = [mx, my]; // Sets new anchor
     });
@@ -156,8 +156,9 @@ pey : previous event y (number)
 remote : if the call is local or from another client (boolean)
 colour : the colour to draw with
 size : the size to draw with
+tool : brush or eraser
 */
-function draw(ex, ey, pex, pey, remote, colour, size){
+function draw(ex, ey, pex, pey, remote, colour, size, tool){
     canvasContext.lineCap = "round";
 
     // If mouse is up and the call is local, return
@@ -193,7 +194,8 @@ function draw(ex, ey, pex, pey, remote, colour, size){
                 pey : pey, // Previous Y
                 remote : true, // Remote draw call
                 colour : colour, // Draw colour
-                size : size // Stroke size
+                size : size, // Stroke size
+                tool : tool // Tool
             });
         }
     }
