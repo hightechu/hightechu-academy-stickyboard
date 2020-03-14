@@ -34,7 +34,11 @@ Chat room with whiteboard: page.html#&togetherjs=[room code]
 
 ### Promo :grinning:
 
+![alt text](https://github.com/hightechu/hightechu-academy-group-3/blob/Small-Changes/promo/Screenshot%202020-03-14%20at%2010.54.11%20AM.png)
 
+![alt text](https://github.com/hightechu/hightechu-academy-group-3/blob/Small-Changes/promo/Screenshot%202020-03-14%20at%2011.07.49%20AM.png)
+
+![alt text](https://github.com/hightechu/hightechu-academy-group-3/blob/Small-Changes/promo/Screenshot%202020-03-14%20at%2011.13.31%20AM.png)
 
 ## Getting Started :thinking:
 
