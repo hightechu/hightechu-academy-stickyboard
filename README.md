@@ -2,41 +2,43 @@
 
 HighTechU Group Project
 
-## [REPLACE ME WITH YOUR GROUP PROJECT NAME]
+## Stickyboard
 
 ### Website :star:
 
-[DELETE ME - ADD YOUR LIVE DEMO URL HERE]
-
-[Live Demo]()
+https://stickyboard-hightechu.herokuapp.com/
 
 ### Mini Pitch :ghost:
 
-[DELETE ME - ADD YOUR PITCH HERE]
+Stickyboard is an easy to use collaboration and teaching software. Powered off of TogetherJS by Mozilla, it includes a chat room, VC (beta), and custom usernames for each user. It centers around the whiteboard, where ideas can easily be shared by any participants. It only takes 10 seconds to set up a room, where you can even choose your own special code. Especially during this time of pandemic, what better way to teach remotely than with Stickyboard?
 
 ### Problem Statment :mega:
 
-[DELETE ME - ADD YOUR PROBLEM STATMEMENT HERE]
+What if you needed a way to visually communicate ideas, but without the hassle of travel?
 
 ### User Stories :snowboarder:
 
-[DELETE ME - ADD YOUR USER STORIES HERE]
+As a host, I want:
+1. To be able to draw something that my students/attendees can see
+2. A strong server so that I can keep sharing ideas without interruptions
+3. To choose my own room code, and choose who joins
 
-* EXAMPLE - I want my users to be able to see a default page on my website.
-* EXAMPLE - I want my users to be able to login to my website.
+As an attendee, I want:
+1. To be able to communicate ideas with others both visually and textually
 
 ### Website Pages :speedboat:
 
-[DELETE ME - ADD YOUR WEBSITE PAGES HERE]
+Landing and Login: index.html
 
-* EXAMPLE - Landing Page -> `index.html`
-* EXAMPLE - Login / Register Page -> `login-register.html`
+Chat room with whiteboard: page.html#&togetherjs=[room code]
 
 ### Promo :grinning:
 
-[DELETE ME - ADD YOUR WEBSITE PROMO IMAGES HERE]
+![alt text](https://github.com/hightechu/hightechu-academy-group-3/blob/Small-Changes/promo/Screenshot%202020-03-14%20at%2010.54.11%20AM.png)
 
-![Example: Promo 1]()
+![alt text](https://github.com/hightechu/hightechu-academy-group-3/blob/Small-Changes/promo/Screenshot%202020-03-14%20at%2011.07.49%20AM.png)
+
+![alt text](https://github.com/hightechu/hightechu-academy-group-3/blob/Small-Changes/promo/Screenshot%202020-03-14%20at%2011.13.31%20AM.png)
 
 ## Getting Started :thinking:
 

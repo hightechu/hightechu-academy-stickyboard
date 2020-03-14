@@ -53,7 +53,7 @@ TogetherJS.hub.on("draw", function(msg){
     if(!msg.sameUrl){
         return;
     }
-    draw(msg.ex, msg.ey, msg.pex, msg.pey, true); // Remote draw() call
+    draw(msg.ex, msg.ey, msg.pex, msg.pey, msg.remote, msg.colour, msg.size); // Remote draw() call
 });
 
 // Clear board from other clients
@@ -91,18 +91,8 @@ canvas.addEventListener("mouseleave",
         mousePos(e);
         if(mousePressed){
             // Call draw() locally
-            draw(mx, my, prevCoord[0], prevCoord[1], false); 
-
-            // Send draw to other clients
-            if(TogetherJS.running){
-                TogetherJS.send({
-                    type : "draw",
-                    ex : mx, // Current X
-                    ey : my, // Current Y
-                    pex : prevCoord[0], // Previous X
-                    pey : prevCoord[1] // Previous Y
-                });
-            }
+            draw(mx, my, prevCoord[0], prevCoord[1], false, 
+                document.getElementById("colors").value, document.getElementById("width").value); 
         }
         prevCoord = [mx, my]; // Sets new anchor
         mousePressed = false;
@@ -112,28 +102,11 @@ canvas.addEventListener("mousemove",
         mousePos(e);
         if(mousePressed){
             // Call draw() locally
-            draw(mx, my, prevCoord[0], prevCoord[1], false); 
-
-            // Send draw to other clients
-            if(TogetherJS.running){
-                TogetherJS.send({
-                    type : "draw",
-                    ex : mx, // Current X
-                    ey : my, // Current Y
-                    pex : prevCoord[0], // Previous X
-                    pey : prevCoord[1] // Previous Y
-                });
-            }
+            draw(mx, my, prevCoord[0], prevCoord[1], false, 
+                document.getElementById("colors").value, document.getElementById("width").value); 
         }
         prevCoord = [mx, my]; // Sets new anchor
     });
-
-// listens for an event and makes sure that when the users changes color it switches to the brush function
-document.getElementById("colors").addEventListener("change", 
-    function(e) {
-        brush();
-    }
-);
 
 // In case the functions need to be expanded
 function mouseUp(){
@@ -181,15 +154,11 @@ ey : event y (number)
 pex : previous event x (number)
 pey : previous event y (number)
 remote : if the call is local or from another client (boolean)
+colour : the colour to draw with
+size : the size to draw with
 */
-function draw(ex, ey, pex, pey, remote){
+function draw(ex, ey, pex, pey, remote, colour, size){
     canvasContext.lineCap = "round";
-
-    // gets the value of the color that is picked
-    var getColorPickerByID = document.getElementById("colors").value;
-    
-    //gets the value of the width that is selected
-    var Width = document.getElementById("width").value;
 
     // If mouse is up and the call is local, return
     if(!mousePressed && !remote)
@@ -198,12 +167,12 @@ function draw(ex, ey, pex, pey, remote){
     // Draws a white line, erasing the stroke, and the width is dependant on what is picked
     if(tool === "eraser"){
         canvasContext.strokeStyle = "#ffffff";
-        canvasContext.lineWidth = Width;
+        canvasContext.lineWidth = size;
     }
     // Draws a line, and the color and width values are dependant on what is picked
     else if(tool === "brush"){
-        canvasContext.strokeStyle = getColorPickerByID;
-        canvasContext.lineWidth = Width;
+        canvasContext.strokeStyle = colour;
+        canvasContext.lineWidth = size;
     }
 
     // Begin path, draw line
@@ -212,4 +181,18 @@ function draw(ex, ey, pex, pey, remote){
     canvasContext.lineTo(ex, ey); // Move to current mouse position
     canvasContext.fill();
     canvasContext.stroke();
+
+    // Send draw to other clients
+    if(TogetherJS.running){
+        TogetherJS.send({
+            type : "draw",
+            ex : ex, // Current X
+            ey : ey, // Current Y
+            pex : pex, // Previous X
+            pey : pey, // Previous Y
+            remote : true, // Remote draw call
+            colour : colour, // Draw colour
+            size : size // Stroke size
+        });
+    }
 }
