@@ -69,7 +69,7 @@
       // Ignores the following console messages, disables all messages if set to true
       ignoreMessages: ["cursor-update", "keydown", "scroll-update"],
       // Ignores the following forms (will ignore all forms if set to true):
-      ignoreForms: [":password"]
+      ignoreForms: true
     };
   
     var styleSheet = "/togetherjs/togetherjs.css";
@@ -487,7 +487,7 @@
       return "TogetherJS";
     };
   
-    var defaultHubBase = "http://localhost:8080/";
+    var defaultHubBase = "https://togetherjs-hub.glitch.me/";
     if (defaultHubBase == "__" + "hubUrl"+ "__") {
       // Substitution wasn't made
       defaultHubBase = "https://hub.togetherjs.mozillalabs.com";
