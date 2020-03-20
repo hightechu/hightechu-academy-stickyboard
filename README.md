@@ -6,7 +6,7 @@ HighTechU Group Project
 
 ### Website :star:
 
-https://stickyboard-hightechu.herokuapp.com/
+[Live Demo](https://stickyboard-hightechu.herokuapp.com/)
 
 ### Mini Pitch :ghost:
 
@@ -19,26 +19,28 @@ What if you needed a way to visually communicate ideas, but without the hassle o
 ### User Stories :snowboarder:
 
 As a host, I want:
+
 1. To be able to draw something that my students/attendees can see
 2. A strong server so that I can keep sharing ideas without interruptions
 3. To choose my own room code, and choose who joins
 
 As an attendee, I want:
+
 1. To be able to communicate ideas with others both visually and textually
 
 ### Website Pages :speedboat:
 
-Landing and Login: index.html
+Landing and Login: `index.html`
 
-Chat room with whiteboard: page.html#&togetherjs=[room code]
+Chat room with whiteboard: `page.html#&togetherjs=[room code]`
 
 ### Promo :grinning:
 
-![alt text](https://github.com/hightechu/hightechu-academy-group-3/blob/Small-Changes/promo/Screenshot%202020-03-14%20at%2010.54.11%20AM.png)
+![ScreenShot 1](promo/landing-page.png)
 
-![alt text](https://github.com/hightechu/hightechu-academy-group-3/blob/Small-Changes/promo/Screenshot%202020-03-14%20at%2011.07.49%20AM.png)
+![ScreenShot 2](promo/example-1.png)
 
-![alt text](https://github.com/hightechu/hightechu-academy-group-3/blob/Small-Changes/promo/Screenshot%202020-03-14%20at%2011.13.31%20AM.png)
+![ScreenShot 3](promo/example-2.png)
 
 ## Getting Started :thinking:
 
