@@ -21,14 +21,18 @@ div.title{text-align: center;
         text-align: center;
     }
     
-
+#pageContainer{
+    width: 100vw;
+    height: 100vh;
+    padding-top: 5vh;
+}
 #whiteboardContainer{
     border: 3px;
     border-color: black;
     border-style: solid;
+    width: 80vw;
+    height: 80vh;
     margin: 0 auto;
-    width: 90vw;
-    height: 90vh;
 }
 
 #whiteboard{

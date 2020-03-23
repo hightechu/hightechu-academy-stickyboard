@@ -27,33 +27,35 @@
   </head>
   <!-- BODY -->
   <body>
-    <script src=js/togetherjs.js></script>
-    <!-- ADD CONTENT HERE -->
- 
-    <div id="whiteboardContainer">
-      <canvas id="whiteboard"></canvas>
+    <div id=pageContainer>
+      <script src=js/togetherjs.js></script>
+      <!-- ADD CONTENT HERE -->
+   
+      <div id="whiteboardContainer">
+        <canvas id="whiteboard"></canvas>
+      </div>
+      <br><br>
+  
+      <!--Added button outline centered buttons added sizes-->
+      <div class="text-center">
+        <button id="brush"  onclick="brush()" class="btn btn-outline-primary btn-sm">Brush</button>
+        <button id="eraser" class="btn btn-outline-primary btn-sm" onclick="eraser()">Eraser</button>
+        <select id="colors" class="btn btn-outline-primary btn-sm" onchange="brush()">
+          <option value="black" class="btn btn-dark">Black</option>
+          <option value="red" class="btn btn-danger">Red</option>
+          <option value="blue" class="btn btn-info">Blue</option>
+          <option value="green" class="btn btn-success">Green</option>
+        </select>
+    
+        <!---Added button outline and sizes so they are all the same-->
+        <input id = "width" class="btn-outline-primary btn-sm" type="number" min="4" max="80" step="4" value="4"></input>
+        <button id="clear" class="btn btn-outline-primary btn-sm" onclick="clearBoard()">Clear Board</button>
+      </div>
+  
+      <!-- JAVASCRIPT SCRIPT -->
+      <!-- ADD JS FILES HERE -->
+      <script src="js/helper.js"></script> <!-- Loopback JavaScript Helper-->
+      <script src="js/main.js"></script>
     </div>
-    <br><br>
-
-    <!--Added button outline centered buttons added sizes-->
-   <div class="text-center">
-    <button id="brush"  onclick="brush()" class="btn btn-outline-primary btn-sm">Brush</button>
-    <button id="eraser" class="btn btn-outline-primary btn-sm" onclick="eraser()">Eraser</button>
-    <select id="colors" class="btn btn-outline-primary btn-sm" onchange="brush()">
-      <option value="black" class="btn btn-dark">Black</option>
-      <option value="red" class="btn btn-danger">Red</option>
-      <option value="blue" class="btn btn-info">Blue</option>
-      <option value="green" class="btn btn-success">Green</option>
-    </select>
-
-  <!---Added button outline and sizes so they are all the same-->
-    <input id = "width" class="btn-outline-primary btn-sm" type="number" min="4" max="80" step="4" value="4"></input>
-    <button id="clear" class="btn btn-outline-primary btn-sm" onclick="clearBoard()">Clear Board</button>
-    </div>
-
-    <!-- JAVASCRIPT SCRIPT -->
-    <!-- ADD JS FILES HERE -->
-    <script src="js/helper.js"></script> <!-- Loopback JavaScript Helper-->
-    <script src="js/main.js"></script>
   </body>
 </html>
