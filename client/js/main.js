@@ -120,7 +120,7 @@ function mouseDown(){
 function brush(){
     tool = "brush";
     document.getElementById("brush").style.textDecoration = "underline";
-    document.getElementById("eraser").style.backgroundColor = "none";
+    document.getElementById("eraser").style.textDecoration = "none";
 }
 function eraser(){
     tool = "eraser";
